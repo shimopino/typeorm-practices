@@ -12,6 +12,22 @@
 - One-to-Many
   - ユーザーは記事を投稿できる
 
+実験を行いたい場合は下記のコマンドを実行する。
+
+```bash
+# クエリを実行したい
+npm run start
+
+# マイグレーションファイルを生成したい
+npm run migrate:generate <name>
+
+# マイグレーションファイルをDBに適用したい
+npm run migrate:run
+
+# データベースの初期データを挿入したい
+npm run init:db
+```
+
 ## 暗黙的な多対多関係の表現方法
 
 多対多関係を表現する場合には、`@ManyToMany` アノテーションと `@JoinTable` アノテーションを使用する。
