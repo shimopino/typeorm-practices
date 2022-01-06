@@ -26,4 +26,14 @@ export const selectGroupByUser = async () => {
         WHERE user_group.userId = 1;
     `);
   console.log(posts);
+
+  // const groupResultByRepo = await postRepository.find({
+  //   where: {
+  //     "userGroups": { userId: 1 },
+  //   },
+  //   relations: ["userGroups"],
+  // })
+
+  // console.log(`--- Repo ---`)
+  // console.log(groupResultByRepo)
 };
