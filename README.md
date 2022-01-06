@@ -97,16 +97,31 @@ export class GroupExplicit {
 
 @Entity()
 export class UserGroupExplicit {
-  @ManyToOne((type) => UserExplicit, (user) => user.userGroups)
+  @ManyToOne((type) => UserExplicit, (user) => user.userGroups, {
+    primary: true,
+  })
   user: UserExplicit;
 
-  @ManyToOne((type) => GroupExplicit, (group) => group.userGroups)
+  @ManyToOne((type) => GroupExplicit, (group) => group.userGroups, {
+    primary: true,
+  })
   group: GroupExplicit;
 
   @Column()
   authenticationType: string;
 }
 ```
+
+交差テーブルにアノテーションを付与する場合には、`primary` フラグを設定しておくことで主キーであることを明示的に伝えておく必要がある。
+
+これで以下のようなテーブルが作成される。
+
+- user_explicit
+  - ID が主キー
+- group_explicit
+  - ID が主キー
+- user_group_explicit
+  - ユーザー ID とグループ ID の複合主キー
 
 参考資料
 
