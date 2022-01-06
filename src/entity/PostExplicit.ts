@@ -1,14 +1,15 @@
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { UserExplicit } from "./UserExplicit";
 import { UserImplicit } from "./UserImplicit";
 
 @Entity()
-export class Post {
+export class PostExplicit {
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   title: string;
 
-  @ManyToOne(() => UserImplicit, (user) => user.posts)
-  user: UserImplicit;
+  @ManyToOne(() => UserExplicit, (user) => user.posts)
+  user: UserExplicit;
 }

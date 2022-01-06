@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, ManyToMany, JoinTable, OneToMany } from "typeorm";
 import { GroupImplicit } from "./GroupImplicit";
-import { Post } from "./Post";
+import { PostImplicit } from "./PostImplicit";
 
 @Entity()
 export class UserImplicit {
@@ -13,6 +13,6 @@ export class UserImplicit {
   @Column()
   email: string;
 
-  @OneToMany(() => Post, post => post.user)
-  posts: Post[];
+  @OneToMany(() => PostImplicit, post => post.user)
+  posts: PostImplicit[];
 }
