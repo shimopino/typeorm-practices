@@ -63,6 +63,55 @@ export class GroupImplicit {
 })
 ```
 
+## 明示的な多対多関係の表現方法
+
+明示的な多対多関係を作成する場合には、明示的に交差テーブルのエンティティを作成する必要がある。
+
+```ts
+@Entity()
+export class UserExplicit {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+
+  @Column()
+  email: string;
+
+  @OneToMany((type) => UserGroupExplicit, (userGroup) => userGroup.user)
+  userGroups: UserGroupExplicit[];
+}
+
+@Entity()
+export class GroupExplicit {
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column()
+  name: string;
+
+  @OneToMany((type) => UserGroupExplicit, (userGroup) => userGroup.group)
+  userGroups: UserGroupExplicit[];
+}
+
+@Entity()
+export class UserGroupExplicit {
+  @ManyToOne((type) => UserExplicit, (user) => user.userGroups)
+  user: UserExplicit;
+
+  @ManyToOne((type) => GroupExplicit, (group) => group.userGroups)
+  group: GroupExplicit;
+
+  @Column()
+  authenticationType: string;
+}
+```
+
+参考資料
+
+- [Many-to-Many with custom fields #1224](https://github.com/typeorm/typeorm/issues/1224#issuecomment-348426495)
+
 ## 1 体多関係の表現方法
 
 1 対多の関係性を表現する場合には、以下のように `@OneToMany` と `@ManyToOne` アノテーションを使用すればいい。
