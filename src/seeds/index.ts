@@ -100,13 +100,13 @@ const main = async () => {
 
   console.log(findAllImplicitUsers);
 
-  const userGroupsImplicit = await connection
-    .getRepository(GroupImplicit)
-    .createQueryBuilder()
-    .update()
-    .set({ users: [{ id: 1 }, { id: 2 }, { id: 3 }] })
-    .where("id = :id", { id: 1 })
-    .execute();
+  // const userGroupsImplicit = await connection
+  //   .getRepository(GroupImplicit)
+  //   .createQueryBuilder()
+  //   .update()
+  //   .set({ users: [{ id: 1 }, { id: 2 }, { id: 3 }] })
+  //   .where("id = :id", { id: 1 })
+  //   .execute();
 
   /** Explicit */
   const userGroupsExplicit = await connection
